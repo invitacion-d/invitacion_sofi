@@ -129,9 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "hidden";
 
     const transitionVideo = document.createElement("video");
-    transitionVideo.src = "https://www.dropbox.com/scl/fi/8h7t48r0vb5f511ovmd0c/out.mp4?rlkey=k6avml98krur4et7g7kpyb4g2&st=z14fi6wj&dl=1";
+
+    transitionVideo.src =
+        "https://www.dropbox.com/scl/fi/8h7t48r0vb5f511ovmd0c/out.mp4?rlkey=k6avml98krur4et7g7kpyb4g2&st=z14fi6wj&raw=1";
+
     transitionVideo.playsInline = true;
-    transitionVideo.autoplay = false;
+    transitionVideo.muted = true;
+
     transitionVideo.style.position = "fixed";
     transitionVideo.style.inset = "0";
     transitionVideo.style.width = "100%";
@@ -142,26 +146,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.appendChild(transitionVideo);
 
+    function finalizarIntro() {
+
+        if (!document.body.contains(overlay))
+            return;
+
+        transitionVideo.remove();
+        overlay.remove();
+
+        document.body.style.overflow = "auto";
+
+        music.play().catch(() => {});
+    }
+
     overlay.addEventListener("click", () => {
 
         loopVideo.pause();
         loopVideo.style.display = "none";
 
         transitionVideo.style.display = "block";
-        transitionVideo.play();
 
-        transitionVideo.onended = () => {
-            transitionVideo.classList.add("fade-out");
+        transitionVideo.play()
+            .catch(() => {
+                finalizarIntro();
+            });
 
-            setTimeout(() => {
-                transitionVideo.remove();
-                overlay.remove();
-                music.play().catch(()=>{});
-                document.body.style.overflow = "auto";
-            }, 1000);
-        };
+        transitionVideo.onended = finalizarIntro;
+
+        transitionVideo.onerror = finalizarIntro;
+
+        setTimeout(finalizarIntro, 7000);
 
     }, { once: true });
+
 });
 
 /* =========================
