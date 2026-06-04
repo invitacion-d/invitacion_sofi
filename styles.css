@@ -265,69 +265,43 @@ body {
             background-image: url('https://raw.githubusercontent.com/invitacion-d/Imgbod/refs/heads/main/sofi/molde.png');
             background-size: cover;
             background-position: center;
+
             width: 100%;
             max-width: 500px;
             min-height: 1000px;
+
+            margin: 0 auto;
+            padding: 200px 20px 50px;
+
+            box-sizing: border-box;
+
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-            position: relative;
+
+            gap: -300px; /* separación automática */
         }
 
-        /* Imagen superior */
-        .img-superior {
-            position: absolute;
-            top: 205px; /* Ajusta este valor para subir o bajar la imagen */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%; /* Ajusta el tamaño según necesites */
+        .img-superior,
+        .img-superf,
+        .img-text {
+            width: 100%;
             max-width: 450px;
             height: auto;
-            z-index: 10;
-        }  
-
-        .img-superf {
-            position: absolute;
-            top: 380px; /* Ajusta este valor para subir o bajar la imagen */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%; /* Ajusta el tamaño según necesites */
-            max-width: 490px;
-            height: auto;
-            z-index: 10;
-        }  
-
-        .btn-direccion {
-            position: absolute;
-            top: 500px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 220px;
-            z-index: 20;
+            display: block;
         }
 
-        .img-text {
-            position: absolute;
-            top: 560px; /* Ajusta este valor para subir o bajar la imagen */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%; /* Ajusta el tamaño según necesites */
-            max-width: 490px;
-            height: auto;
-            z-index: 10;
-        }  
-
+        .btn-direccion,
         .btn-whatsapp {
-            position: absolute;
-            top: 680px;
-            left: 50%;
-            transform: translateX(-50%);
             width: 220px;
-            z-index: 20;
+            display: block;
+        }
+
+        .btn-direccion img,
+        .btn-whatsapp img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         #seccion-dia {
